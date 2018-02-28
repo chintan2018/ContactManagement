@@ -1,0 +1,125 @@
+﻿@using ContactModel.POCOClasses
+@model Contact
+<div class="modal-title">
+    <h3>Add new contact</h3>
+</div>
+<br />
+
+
+<div class="modal-content" style="width:500px !important; margin:10px auto !important;">
+
+    @using (Html.BeginForm("AddContact", "Home", FormMethod.Post, new { id = "AddForm" }))
+    {
+        <div class="modal-header">
+            <h4>Add Contact</h4> <button id="modal-close-button" type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="alert alert-success" id="successMessage" style="display:none">
+
+        </div>
+        <div class="alert alert-warning" id="errorMessage" style="display:none">
+
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            @Html.TextBoxFor(model => model.FirstName) <b style="color:red">*</b>
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+        <div class="form-group">
+            <label for="firstName">Last Name:</label>
+            @Html.TextBoxFor(model => model.LastName) <b style="color:red">*</b>
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            @Html.TextBoxFor(model => model.Email) <b style="color:red">*</b>
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number:</label>
+            @Html.TextBoxFor(model => model.PhoneNumber) <b style="color:red">*</b>
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+        <div class="form-group">
+            <label for="optradio">Status:</label>
+            @Html.RadioButton("Status", "Active", true) @Html.Label("Active")
+            @Html.RadioButton("Status", "InActive", false) @Html.Label("InActive")
+        </div>
+        <div class="modal-footer">
+            <input type="button" id="btnSubmit" class="btn btn-info" value="Submit" />
+            <input type="button" id="btnCancel" class="btn" value="Cancel" />
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    $(document).ready(
+        function () {
+            document.getElementById('errorMessage').innerHTML = '';
+            $('#errorMessage').css('display', 'none');
+            $('#successMessage').css('display', 'none');
+        }
+    );
+
+    $(function () {
+
+        function AddContact() {
+
+            var contact = {};
+            contact.FirstName = $("#FirstName").val();
+            contact.LastName = $("#LastName").val();
+            contact.Email = $("#Email").val();
+            contact.PhoneNumber = $("#PhoneNumber").val();
+            contact.Status = $('input[name=Status]:checked', '#AddForm').val();
+
+            $.ajax({
+                //url: "http://localhost:3045/api/contact",
+                url: "http://localhost/contactmanagement/api/contact",
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                data: JSON.stringify(contact),
+                dataType: "json",
+                success: function (response) {
+                    $('#successMessage').css('display', 'block');
+                    document.getElementById('successMessage').innerHTML = '<h4>Contact added successfully</h4>';
+                    //alert('Contact added successfully');
+                    $('#addModal').modal('hide');
+                    location.reload(true);
+                },
+
+                error: function (x, e) {
+                    $('#errorMessage').css('display', 'block');
+                    CreateValidationMessage(x,"contact.FirstName");
+                    CreateValidationMessage(x,"contact.LastName");
+                    CreateValidationMessage(x,"contact.Email");
+                    CreateValidationMessage(x,"contact.PhoneNumber");
+                }
+            });
+        }
+
+        function CreateValidationMessage(x,fieldName) {
+            if (x.responseJSON.ModelState[fieldName] !== undefined) {
+
+                for (var i = 0; i < x.responseJSON.ModelState[fieldName].length; i++) {
+                    document.getElementById('errorMessage').innerHTML += '<h6>' + x.responseJSON.ModelState[fieldName][i] + '</h6>';
+                }
+
+            }
+        }
+
+        $('#btnCancel').click(
+            function () {
+                document.getElementById('errorMessage').innerHTML = '';
+                $('#addModal').modal('hide');
+                e.preventDefault();
+            }
+        );
+
+        $('#btnSubmit').click(
+            function () {
+                document.getElementById('errorMessage').innerHTML = '';
+                AddContact();
+                e.preventDefault();
+            }
+        );
+    })
+</script>
+
