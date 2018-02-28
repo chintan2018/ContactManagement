@@ -1,0 +1,16 @@
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\bin\Debug\ContactModel.dll.config
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\bin\Debug\ContactModel.dll
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\bin\Debug\ContactModel.pdb
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\bin\Debug\EntityFramework.dll
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\bin\Debug\EntityFramework.xml
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\obj\Debug\ContactModel.Migrations.ContactDB_V1.resources
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\obj\Debug\ContactModel.Migrations.ContactDB_V2.resources
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\obj\Debug\ContactModel.Migrations.ContactDB_V3.resources
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\obj\Debug\ContactModel.csproj.GenerateResource.Cache
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\obj\Debug\ContactModel.csproj.CoreCompileInputs.cache
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\obj\Debug\ContactModel.dll
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\obj\Debug\ContactModel.pdb
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\obj\Debug\ContactModel.csprojResolveAssemblyReference.cache
+C:\Users\Chintan\source\repos\ContactManagement\ContactModel\obj\Debug\ContactModel.Migrations.ContactDB_V4.resources
