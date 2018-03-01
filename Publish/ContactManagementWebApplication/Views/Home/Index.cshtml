@@ -1,0 +1,78 @@
+﻿@using ContactModel.POCOClasses
+@model IEnumerable<Contact>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<div class="jumbotron">
+    <h1>My Contacts manager</h1>
+</div>
+
+<div id="contactsView" class="container">
+    <table class="table table-bordered table-striped table-condensed">
+        <thead>
+            <tr>
+                @*<th>Id</th>*@
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>      </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td style="display:none;">@Html.DisplayFor(i => item.Id)</td>
+                <td>@Html.DisplayFor(i => item.FirstName)</td>
+                <td>@Html.DisplayFor(i => item.LastName)</td>
+                <td>@Html.DisplayFor(i => item.PhoneNumber)</td>
+                <td>@Html.DisplayFor(i => item.Email)</td>
+                <td>@Html.DisplayFor(i => item.Status)</td>
+                <td>
+                    @Html.ActionLink("Edit", "EditContact", "Home", new { id = item.Id }, new { @class = "btn btn-info modal-link glyphicon glyphicon-pencil", title = "Edit" })
+                    @Html.ActionLink("Delete", "DeleteContact", "Home", new { id = item.Id }, new { @class = "btn btn-info modal-link glyphicon glyphicon-trash", title = "Delete" })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div id="buttons" class="container">
+    @Html.ActionLink("Add","AddContact","Home",null,new { @class="btn btn-info modal-link",title = "Add Contact" })
+</div>
+
+<div id="addModal" role="dialog" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width:500px !important; margin:10px auto !important;">
+            <div class="modal-body" id="modalBody">
+                <!--Controls to Add data-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(
+        function () {
+            $('body').on('click', '.modal-link', function (e) {
+                e.preventDefault();
+                $(this).attr('data-target', '#addModal');
+                $(this).attr('data-toggle', 'modal');
+            })
+
+            $('body').on('click', '#modal-close-button', function (e) {
+                $('#addModal').modal('hide');
+            })
+
+            $('#addModal').on('hidden.bs.modal', function () {
+                $(this).removeData('bs.modal');
+            })
+        }
+    )
+</script>

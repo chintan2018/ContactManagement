@@ -21,11 +21,11 @@ This repository consists of 4 projects
     c. Enter loginName and Password (Make sure connection string is updated with current Uname and Password)
     d. In ServerRoles -> select Public and SysAdmin
     e. In Status -> Select "Permission to conect -> Grant" and "Database login -> enabled"
-1. Launch Nuget Package manager console to setup database locally
-2. In console point to project "ContactModel" and "ContactManagement" is set up as startup project
-3. Delete all migration history in Migration folder first since we are setting it up for first time
-7. Type below commands in sequence
+2. Launch Nuget Package manager console to setup database locally
+3. In console point to project "ContactModel" and "ContactManagement" is set up as startup project
+4. Delete all migration history in Migration folder first since we are setting it up for first time
+5. Type below commands in sequence
         Enable-migrations    --To enable creating migration files
         Add-migration <MigrationName> --Migration script is created
         Update-Database --Database will get created in server 
-8. Go back to SSMS in Security->Login->ContactDBUser goto properties User Mapping tab -> select Valence
+6. Go back to SSMS in Security->Login->ContactDBUser goto properties User Mapping tab -> select Valence
